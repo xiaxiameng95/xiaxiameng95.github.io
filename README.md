@@ -1,133 +1,195 @@
-# Rain
+# Monophase <!-- omit in toc -->
 
-Rain is a simple and clean Jekyll theme with focus on content. It's a fork of [Tale theme](https://github.com/chesterhow/tale) with additional customizations.
+Monophase is *a one-column minimal responsive Jekyll blog theme*.
 
-![](https://github.com/inelaah/rain/blob/master/images/screenshot.png)
+One of the purposes of Monophase is to be an alternative option to the default theme of Jekyll—[Minima](https://github.com/jekyll/minima). Monophase is still keeping minimal, but meanwhile, more beautiful and mellow, and doesn't lose some useful basic features, such as archive.
 
-## Features
-- Compatible with GitHub Pages
-- Responsive design
-- Syntax highlighting
-- Markdown and HTML text formatting
-- Pagination of posts
-- Related articles section
-- Links to social media
+Check the *[live demo](https://zivlog.io/monophase/)*.
 
+![Screenshot Light](screenshot-light.png)
+![Screenshot Dark](screenshot-dark.png)
 
-## Getting Started
+## Highlight Features <!-- omit in toc -->
 
-You will need to install Jekyll on your machine. Installation depends on your operating system and it is explained [here](https://jekyllrb.com/docs/installation/).
+- [Normalize.css](https://github.com/necolas/normalize.css)
+- [Open Color](https://github.com/yeun/open-color)
+- [Font Awesome](https://fontawesome.com/)
+- [Disqus](https://disqus.com/)
+- [MathJax](https://www.mathjax.org/)
+- [Google Analytics 4](https://support.google.com/analytics/answer/10089681?hl=en)
+- [Jekyll Feed](https://github.com/jekyll/jekyll-feed/)
+- [Jekyll Paginate](https://github.com/jekyll/jekyll-paginate)
+- [Jekyll SEO Tag](https://github.com/jekyll/jekyll-seo-tag/)
+- Related posts (time-based, because Jekyll) below each post
+- Dark mode, via [`prefers-color-scheme`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme)
+- Archive implemented by pure [Liquid](https://shopify.github.io/liquid/)
 
-Then create a new directory and clone this repository:
+## Table of Contents <!-- omit in toc -->
 
-```bash
-mkdir rain
-cd rain
-git clone https://github.com/inelaah/rain.git
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Global Configuration](#global-configuration)
+  - [Post Configuration](#post-configuration)
+  - [Homepage](#homepage)
+  - [Custom Head](#custom-head)
+  - [Navigation](#navigation)
+  - [Social Links](#social-links)
+  - [Alert Messages](#alert-messages)
+  - [Alignment](#alignment)
+  - [Google Analytics 4](#google-analytics-4)
+  - [Archive](#archive)
+- [Contributing](#contributing)
+- [Development](#development)
+- [License](#license)
+
+## Installation
+
+Add this line to your Jekyll site's `Gemfile`:
+
+```ruby
+gem "monophase"
 ```
 
-Install all dependencies:
+And add this line to your Jekyll site's `_config.yml`:
 
-```bash
-bundle install
+```yaml
+theme: monophase
 ```
 
-## Site Configuration
+And then execute:
 
-There is a configuration file `_config.yml` in root directory. You should overwrite it to fit to your needs.
-
-An example of `_config.yml` looks like this:
-
-```bash
-# Site settings
-title:          Rain
-description:    "Rain is a simple and clean Jekyll theme with focus on content."
-url:            https://github.com/inelaah/rain
-
-# Author
-author:
-  name:         Inela Avdic Hukic
-  email:        inelaah@gmail.com
-  url:          https://inelaah.com
-
-# Build settings
-markdown:       kramdown
-
-# Assets
-sass:
-  sass_dir:     _sass
-  style:        compressed
-
-# Gems
-plugins:
-  - jekyll-feed
-  - jekyll-paginate
-  # - jemoji #Uncomment this to allow emoji in your post
-
-# Permalinks
-permalink:      /:year-:month-:day/:title
-paginate:       5
-
-# Related posts settings
-related_posts_section:
-  max_count:        5
-  min_common_tags:  2
-
-# Links to social media
-social:
-  email: inelaah@gmail.com
-  github: https://github.com/inelaah
-  twitter: https://twitter.com
-  linkedin: https://ba.linkedin.com/in/inela-avdic-hukic-322354131
+```shell
+bundle
 ```
 
-## Favicons
+Or install it yourself as:
 
-It is recommended to put your own favicons:
-
-- `apple-touch-icon.png` (180x180)
-- `favicon-32x32.png` (32x32)
-- `favicon-16x16.png` (16x16)
-- `mstile-150x150.png` (150x150)
-- `android-chrome-192x192.png` (192x192)
-- `android-chrome-512x512.png` (512x512)
-
-in `/assets` directory. They're easily created via [Favicon Generator](https://realfavicongenerator.net/).
-
-
-## Related Articles
-
-Related articles section is based on article tags. For every post that you want to have this section you should define tags.
-To include related articles in the bottom of the content you should define `related_posts_section` property in configuration file.
-It contains two fields: `max_count` and `min_common_tags`:
-- `max_count` represents the maximum number of related articles shown on a single article.
-- `min_common_tags` represents the minimum number of common tags for two articles to become related articles.
-
-## Links to social media
-
-To include links to social media in the top right corner of your page you need to define `social` property.
-It contains email, GitHub, Twitter and LinkedIn fields. You can leave out any of these if you don't want them to show up on your page.
-
-## Customizing Rain theme
-
-If you want to customize Rain theme you can fork this project and make some changes. If you just want to change the style then you can find Sass files in `_sass/rain` directory.
-
-## Adding your own posts
-
-You can see an example of post structure in `_posts` directory. After you clone this project you should clean the `_posts` directory and add your own posts.
-
-## Build and serve
-
-```
-bundle exec jekyll serve
+```shell
+gem install monophase
 ```
 
-Head over to http://127.0.0.1:4000/ to see your page.
+You can also install the latest code via [`jekyll-remote-theme`](https://github.com/benbalter/jekyll-remote-theme):
+
+1. Add this line to your Jekyll site's `Gemfile`:
+
+    ```ruby
+    gem "jekyll-remote-theme"
+    ```
+
+2. Add these lines to your Jekyll site's `_config.yml`:
+
+    ```ruby
+    plugins:
+      - jekyll-remote-theme
+
+    remote_theme: zivhub/monophase@main
+    ```
+
+## Usage
+
+### Global Configuration
+
+| Variable | Type | Default | Specification |
+| -------- | ---- | ------- | ------------- |
+| `title` | String | --- | The title of the website |
+| `tagline` | String | --- | The tagline of the website |
+| `lang` | String | `en` | The language of pages; The value can be overwritten by the `lang` variable on each page |
+| `author.name` | String | --- | The name of the website author |
+| `author.url` | String | --- | A URL of the website author |
+| `tags_path` | String | --- | A path to the archive-by-tags page; It is used by tags on each post |
+| `categories_path` | String | --- | A path to the archive-by-categories page; It is used by categories on each post |
+| `disqus` | String | --- | Disqus short name |
+| `google_analytics` | String | --- | Google Analytics 4 Measurement ID |
+
+### Post Configuration
+
+| Variable | Type | Default | Specification |
+| -------- | ---- | ------- | ------------- |
+| `description` | String | --- | A description of the current post |
+| `last_modified_at` | String | --- | The date of the last modification you made on a post after its publishing |
+| `author` | String or Array | --- | The author name(s) of the post |
+| `comments` | Boolean | `true` | Does enable the Disqus comment system |
+| `math` | Boolean | `false` | Does enable MathJax on this page |
+
+### Homepage
+
+You can create a homepage for your blog by setting `layout: home` in your `index.html`.
+
+### Custom Head
+
+Monophase leaves a placeholder to allow defining custom head. All you need to do is putting data into `_includes/custom-head.html`, and they would be automatically included in `<head>`.
+
+### Navigation
+
+The navigation bar of Monophase is configurable. You just need to specify titles and URLs in the file `_data/navigation.yml`, for example,
+
+```yml
+- title: About
+  url: /about/
+- title: Archive
+  url: /archive/
+- title: Categories
+  url: /categories/
+```
+
+### Social Links
+
+Monophase allows you to show social links on the website. All you need to do is creating a file `_data/social.yml`, for example,
+
+```yml
+- title: Email
+  url: mailto:zivmsg@gmail.com
+  icon: fas fa-envelope
+- title: Twitter
+  url: https://twitter.com/zivtwt
+  icon: fab fa-twitter
+- title: GitHub
+  url: https://github.com/zivhub
+  icon: fab fa-github
+```
+
+### Alert Messages
+
+Monophase provides some predefined classes to specify different levels of **alert messages**. In order of tone from light to heavy, they are: `message-info`, `message-warning`, and `message-danger`. You may add it to single elements like a `<p>`, or to a parent if there are multiple elements to show.
+
+### Alignment
+
+Monophase also provides some predefined classes to specify the alignment of HTML elements—e.g. images. They are `align-center`, `align-left`, and `align-right`.
+
+### Google Analytics 4
+
+To enable [Google Analytics 4](https://support.google.com/analytics/answer/10089681?hl=en), you just need to set the [Measurement ID](https://support.google.com/analytics/answer/7372977?hl=en) in your `_config.yml`, for example,
+
+```yml
+google_analytics: G-XXXXXXX
+```
+
+### Archive
+
+Monophase provides some built-in archive pages. It is implemented in pure Liquid. If you want to archive posts by years, you can create a page and put these code in it:
+
+```yml
+---
+layout: archive
+type: years
+---
+```
+
+Similarly, if you want to archive posts by categories or tags, you can set the `type` property as `categories` or `tags`.
+
+## Contributing
+
+Bug reports and pull requests are welcome on GitHub at [https://github.com/zivhub/monophase](https://github.com/zivhub/monophase). This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+
+## Development
+
+To set up your environment to develop this theme, run `bundle install`.
+
+Your theme is setup just like a normal Jekyll site! To test your theme, run `bundle exec jekyll serve` and open your browser at `http://localhost:4000`. This starts a Jekyll server using your theme. Add pages, documents, data, etc. like normal to test your theme's contents. As you make modifications to your theme and to your content, your site will regenerate and you should see the changes in the browser after a refresh, just like normal.
+
+When your theme is released, only the files in `_layouts`, `_includes`, `_sass` and `assets` tracked with Git will be bundled.
+To add a custom directory to your theme-gem, please edit the regexp in `monophase.gemspec` accordingly.
 
 ## License
 
-Rain is licensed under the MIT license. Check the [LICENSE](LICENSE.md) file for details.
-
-## Author
-
-[Inela Avdic Hukic](https://github.com/inelaah)
+The theme is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
